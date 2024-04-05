@@ -1,0 +1,60 @@
+@import "src/index.scss";
+
+.inputBlock {
+  width: 100%;
+  position: relative;
+  margin-bottom: 50px;
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d0cfcf;
+    border-radius: 4px;
+    outline: none;
+    background-color: transparent;
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: 0 !important;
+      transform: translateY(-50%) scale(0.8) translateX(-10px) !important;
+      background-color: var(--background);
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #7e7e7e;
+    padding: 5px;
+    transition: 0.2s ease-in;
+    pointer-events: none;
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    bottom: -45%;
+    font-size: 12px;
+    color: #7e7e7e;
+    line-height: 1.16;
+  }
+
+  &.falseValidate {
+    .errorMessage {
+      color: #cb3d40;
+    }
+
+    input {
+      border-color: #cb3d40;
+    }
+
+    label {
+      color: #cb3d40;
+    }
+  }
+}

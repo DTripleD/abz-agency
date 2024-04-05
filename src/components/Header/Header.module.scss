@@ -1,0 +1,21 @@
+.header {
+  background-color: var(--white);
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.buttonsList {
+  display: flex;
+  gap: 10px;
+}
+
+.logo {
+  width: 104px;
+  height: 26px;
+}
