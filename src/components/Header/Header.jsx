@@ -3,12 +3,9 @@ import Button from "components/Button/Button";
 import css from "./Header.module.scss";
 
 import icons from "src/images/icons.svg";
+import { scrollIntoView } from "src/helpers/scrollIntoView";
 
 const Header = () => {
-  const scrollIntoView = (id) => {
-    const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
-  };
   return (
     <header className={css.header}>
       <div className={`container ${css.headerContainer}`}>

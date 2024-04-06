@@ -1,13 +1,9 @@
 import Button from "components/Button/Button";
 
 import css from "./HeroSection.module.scss";
+import { scrollIntoView } from "src/helpers/scrollIntoView";
 
 const HeroSection = () => {
-  const scrollIntoView = (id) => {
-    const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className={`${css.heroSection}`}>
       <div className={`${css.container} ${css.heroContainer}`}>
