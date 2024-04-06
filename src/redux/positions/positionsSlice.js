@@ -21,7 +21,6 @@ export const positionsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getPositions.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.positions = payload.positions;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)

@@ -17,7 +17,19 @@
 
   cursor: pointer;
 
+  transition: background-color ease-in-out 300ms;
+
+  &:hover {
+    background-color: var(--hover);
+  }
+
   &.large {
     width: 120px;
+  }
+
+  &:disabled {
+    color: var(--white);
+    background-color: var(--disabled-button);
+    cursor: auto;
   }
 }

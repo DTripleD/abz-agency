@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUsers } from "./usersOperations";
+import { getToken, getUsers } from "./usersOperations";
 
 const initialState = {
   total_pages: 1,
@@ -7,6 +7,7 @@ const initialState = {
   users: [],
   error: "",
   isLoading: true,
+  token: "",
 };
 
 const handlePending = (state) => {
@@ -23,16 +24,25 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     setPage: (state) => {
-      state.page++;
+      state.page += 1;
     },
   },
   extraReducers: (builder) =>
     builder
+      .addCase(getToken.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+      })
       .addCase(getUsers.fulfilled, (state, { payload }) => {
         state.total_pages = payload.total_pages;
-        state.users = [...state.users, ...payload.users];
+
+        if (state.page === 1) {
+          state.users = payload.users;
+        } else {
+          state.users = [...state.users, ...payload.users];
+        }
         state.isLoading = false;
       })
+
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

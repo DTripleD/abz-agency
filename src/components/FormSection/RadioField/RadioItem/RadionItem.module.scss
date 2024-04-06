@@ -1,0 +1,38 @@
+.radioItem {
+  input {
+    position: absolute;
+    opacity: 0;
+
+    & + label {
+      cursor: pointer;
+
+      &::before {
+        display: inline-block;
+        content: "";
+        background-color: transparent;
+        border: 1px solid var(--radion-border);
+        height: 20px;
+        width: 20px;
+        position: relative;
+        vertical-align: top;
+        margin-right: 12px;
+        border-radius: 100%;
+        transition: 0.2s ease-in;
+      }
+    }
+
+    &:checked {
+      + label {
+        &::before {
+          border-color: var(--radion-checked);
+          background-color: var(--radion-checked);
+          box-shadow: inset 0 0 0 4px var(--background);
+        }
+      }
+    }
+  }
+
+  label {
+    margin-left: 12px;
+  }
+}

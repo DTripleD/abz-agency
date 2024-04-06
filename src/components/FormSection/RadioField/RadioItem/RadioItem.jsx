@@ -1,8 +1,11 @@
 import { Field } from "formik";
+import PropTypes from "prop-types";
+
+import css from "./RadionItem.module.scss";
 
 const RadioItem = ({ position, position_id, setFieldValue, validate }) => {
   return (
-    <div className="radio-item">
+    <div className={css.radioItem}>
       <Field
         type="radio"
         name="position"
@@ -18,3 +21,10 @@ const RadioItem = ({ position, position_id, setFieldValue, validate }) => {
 };
 
 export default RadioItem;
+
+RadioItem.propTypes = {
+  position: PropTypes.string,
+  position_id: PropTypes.number,
+  setFieldValue: PropTypes.func,
+  validate: PropTypes.func,
+};

@@ -1,0 +1,12 @@
+@import "src/index.scss";
+
+.radioBlock {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  position: relative;
+  .error-message {
+    bottom: -30px;
+  }
+}

@@ -9,7 +9,7 @@ const UserItem = ({ user }) => {
       <p className={css.userText}>{user.name}</p>
       <div>
         <p className={css.userText}>{user.position}</p>
-        <p className={css.userText}>{user.mail}</p>
+        <p className={css.userText}>{user.email}</p>
         <p className={css.userText}>{user.phone}</p>
       </div>
     </li>

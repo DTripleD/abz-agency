@@ -1,51 +1,55 @@
 import Button from "components/Button/Button";
 
 import css from "./FormSection.module.scss";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import RadioItem from "../RadioItem/RadioItem";
+import { Form, Formik } from "formik";
 import {
   validateEmail,
   validateName,
   validatePhone,
-  validatePhoto,
-  validatePosition,
-} from "../../validation/validation";
-import InputField from "../InputField/InputField";
+} from "src/validation/validation";
+
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPositions } from "../../redux/positions/positionsSelectors";
-import { getPositions } from "../../redux/positions/positionsOperations";
+import { useDispatch } from "react-redux";
+import { getPositions } from "src/redux/positions/positionsOperations";
+import { postUser } from "src/redux/users/usersOperations";
+
+import InputField from "./InputField/InputField";
+import RadioField from "./RadioField/RadioField";
+import ImageField from "./ImageField/ImageField";
 
 const FormSection = () => {
   const dispatch = useDispatch();
-
-  const positions = useSelector(selectPositions);
 
   useEffect(() => {
     dispatch(getPositions());
   }, [dispatch]);
 
+  const onFormSubmit = (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("position_id", values.position);
+    formData.append("phone", values.phone);
+    formData.append("email", values.email);
+    formData.append("photo", values.photo);
+    dispatch(postUser(formData));
+  };
+
+  const initialValues = {
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    photo: "",
+  };
+
   return (
-    <section className={`${css.section} ${css.formSection}`}>
+    <section className={`${css.section} ${css.formSection}`} id="form">
       <div className={`${css.container} ${css.secondaryContainer}`}>
         <h2 className={css.title}>Working with POST request</h2>
         <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            phone: "",
-            position: "",
-            photo: "",
-          }}
-          onSubmit={(values) => {
-            // const formData = new FormData();
-            // formData.append("name", values.name);
-            // formData.append("position_id", values.position);
-            // formData.append("phone", values.phone);
-            // formData.append("email", values.email);
-            // formData.append("photo", values.photo);
-            // dispatch(postUser(formData));
-          }}
+          validateOnMount={true}
+          initialValues={initialValues}
+          onSubmit={onFormSubmit}
         >
           {({ values, errors, touched, isValid, setFieldValue }) => (
             <Form className={css.form}>
@@ -57,8 +61,6 @@ const FormSection = () => {
                 name="name"
                 type="text"
               />
-
-              {console.log(isValid)}
 
               <InputField
                 errors={errors}
@@ -78,61 +80,14 @@ const FormSection = () => {
                 type="tel"
               />
 
-              <div
-                className={`radio-block ${
-                  errors.position && touched.position ? css.falseValidate : ``
-                }`}
-              >
-                <p>Select your position </p>
-                {positions &&
-                  positions.map((item) => (
-                    <RadioItem
-                      key={item.id}
-                      position={item.name}
-                      position_id={item.id}
-                      setFieldValue={setFieldValue}
-                      validate={validatePosition}
-                      required
-                    />
-                  ))}
-                <ErrorMessage
-                  name="position"
-                  className={css.errorMessage}
-                  component="div"
-                />
-              </div>
-              <div
-                className={`${css.imageBlock} ${
-                  errors.photo && touched.photo ? css.falseValidate : ``
-                }`}
-              >
-                <label htmlFor="file">
-                  <Field
-                    type="file"
-                    id="photo"
-                    name="photo"
-                    accept="image/jpeg"
-                    value=""
-                    validate={validatePhoto}
-                    onChange={(event) => {
-                      const file = event.currentTarget.files[0];
-                      setFieldValue("photo", file);
-                    }}
-                  />
-                  <div className={css.buttonFile}>Upload</div>
-                  <span className={css.fileText}>
-                    {!values.photo.name
-                      ? "Upload your photo"
-                      : values.photo.name}
-                  </span>
-                  <ErrorMessage
-                    name="photo"
-                    component="div"
-                    className={css.errorMessage}
-                  />
-                </label>
-              </div>
+              <RadioField setFieldValue={setFieldValue} />
 
+              <ImageField
+                errors={errors}
+                touched={touched}
+                setFieldValue={setFieldValue}
+                values={values}
+              />
               <Button text="Submit" type="submit" isValid={isValid} />
             </Form>
           )}

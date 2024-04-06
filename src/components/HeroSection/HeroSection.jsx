@@ -3,6 +3,11 @@ import Button from "components/Button/Button";
 import css from "./HeroSection.module.scss";
 
 const HeroSection = () => {
+  const scrollIntoView = (id) => {
+    const element = document.getElementById(id);
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className={`${css.heroSection}`}>
       <div className={`${css.container} ${css.heroContainer}`}>
@@ -18,7 +23,7 @@ const HeroSection = () => {
             world of Front-End Development keeps evolving.
           </p>
         </div>
-        <Button text="Sign up" />
+        <Button text="Sign up" handleFunction={() => scrollIntoView("form")} />
       </div>
     </section>
   );
