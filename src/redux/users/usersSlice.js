@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getToken, getUsers } from "./usersOperations";
+import { getToken, getUsers, postUser } from "./usersOperations";
 
 const initialState = {
   total_pages: 1,
@@ -8,6 +8,7 @@ const initialState = {
   error: "",
   isLoading: true,
   token: "",
+  isSent: false,
 };
 
 const handlePending = (state) => {
@@ -42,7 +43,9 @@ export const usersSlice = createSlice({
         }
         state.isLoading = false;
       })
-
+      .addCase(postUser.fulfilled, (state) => {
+        state.isSent = true;
+      })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

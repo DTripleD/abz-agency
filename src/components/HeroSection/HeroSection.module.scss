@@ -20,14 +20,18 @@
   background-size: cover;
   background-position: center;
 
-  // padding-top: 164px;
-  // padding-bottom: 163px;
+  @media screen and (min-width: 768px) {
+    padding-top: 89px;
+    padding-bottom: 88px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-top: 164px;
+    padding-bottom: 163px;
+  }
 }
 
 .heroText {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
   text-align: center;
 
   color: var(--white);
@@ -35,15 +39,9 @@
 
 .heroContainer {
   width: 100%;
-
   max-width: 380px;
 
   text-align: center;
-
-  // @media screen and (min-width: 768px) {
-  //   padding-top: 94px;
-  //   padding-bottom: 94px;
-  // }
 }
 
 .heroTextWrapper {

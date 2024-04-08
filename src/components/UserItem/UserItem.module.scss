@@ -7,6 +7,24 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  width: 328px;
+
+  @media screen and (min-width: 768px) {
+    width: 344px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 282px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 370px;
+  }
+}
+
+.userInfoWrapper {
+  width: 100%;
 }
 
 .userImage {
@@ -14,16 +32,12 @@
 }
 
 .userText {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
   text-align: center;
 
   color: var(--black);
 
-  width: 288px;
+  width: 100%;
 
-  // width: 304px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

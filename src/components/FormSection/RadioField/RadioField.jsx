@@ -10,18 +10,20 @@ const RadioField = ({ setFieldValue }) => {
   const positions = useSelector(selectPositions);
   return (
     <div className={css.radioBlock}>
-      <p>Select your position </p>
-      {positions &&
-        positions.map((item) => (
-          <RadioItem
-            key={item.id}
-            position={item.name}
-            position_id={item.id}
-            setFieldValue={setFieldValue}
-            validate={validatePosition}
-            required
-          />
-        ))}
+      <p className={css.radioTitle}>Select your position </p>
+      <ul className={css.positionsList}>
+        {positions &&
+          positions.map((item) => (
+            <RadioItem
+              key={item.id}
+              position={item.name}
+              position_id={item.id}
+              setFieldValue={setFieldValue}
+              validate={validatePosition}
+              required
+            />
+          ))}
+      </ul>
     </div>
   );
 };

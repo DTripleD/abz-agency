@@ -6,12 +6,4 @@
 @import "./utils/title";
 @import "./utils/section";
 @import "./utils/container";
-
-.errorMessage {
-  position: absolute;
-  left: 0;
-  bottom: -45%;
-  font-size: 12px;
-  line-height: 1.16;
-  color: #cb3d40;
-}
+@import "./utils/errorMessage";

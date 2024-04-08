@@ -5,33 +5,36 @@ import PropTypes from "prop-types";
 
 const ImageField = ({ errors, touched, setFieldValue, values }) => {
   return (
-    <div
-      className={`${css.imageBlock} ${
-        errors.photo && touched.photo ? css.falseValidate : ``
-      }`}
-    >
-      <label>
+    <div className={css.imagePicker}>
+      <label className={css.imageLabel}>
         <Field
           type="file"
           name="photo"
           accept="image/jpeg"
           value=""
+          className={css.imageInput}
           validate={validatePhoto}
           onChange={(event) => {
             const file = event.currentTarget.files[0];
             setFieldValue("photo", file);
           }}
         />
-        <div className={css.buttonFile}>Upload</div>
-        <span className={css.fileText}>
+        <div
+          className={`${css.buttonFile} ${
+            errors.photo && touched.photo ? css.falseValidate : ``
+          }`}
+        >
+          Upload
+        </div>
+        <span
+          className={`${css.fileText} ${
+            errors.photo && touched.photo ? css.falseValidate : ``
+          }`}
+        >
           {!values.photo.name ? "Upload your photo" : values.photo.name}
         </span>
-        <ErrorMessage
-          name="photo"
-          component="div"
-          className={css.errorMessage}
-        />
       </label>
+      <ErrorMessage name="photo" component="div" className={css.errorMessage} />
     </div>
   );
 };

@@ -6,19 +6,27 @@ import PropTypes from "prop-types";
 
 const InputField = ({ errors, touched, validate, label, name, type }) => {
   return (
-    <div
-      className={`${css.inputBlock} ${
-        errors[name] && touched[name] ? css.falseValidate : ``
-      }`}
-    >
+    <div className={css.inputBlock}>
       <Field
         type={type}
         name={name}
+        className={`${css.inputField} ${
+          errors[name] && touched[name] ? css.falseValidate : ``
+        }`}
         validate={validate}
-        className="input-text"
         placeholder=" "
       />
-      <label htmlFor={name}>{label}</label>
+      <label
+        htmlFor={name}
+        className={`${css.inputLabel} ${
+          errors[name] && touched[name] ? css.falseValidate : ``
+        }`}
+      >
+        {label}
+      </label>
+      {name === "phone" && !touched.phone && (
+        <div className={css.helperText}>+38 (XXX) XXX - XX - XX</div>
+      )}
       <ErrorMessage name={name} component="div" className={css.errorMessage} />
     </div>
   );

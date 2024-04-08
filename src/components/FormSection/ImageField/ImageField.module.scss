@@ -1,67 +1,74 @@
 @import "src/index.scss";
 
-.imageBlock {
-  margin-top: 50px;
+.imagePicker {
   width: 100%;
-  padding: 14px 0;
+  margin-bottom: 50px;
   position: relative;
-
-  label {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    cursor: pointer;
-
-    input {
-      width: 20%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      position: absolute;
-      opacity: 0;
-
-      &::after {
-        content: "";
-        border: 1px solid black;
-        border-radius: 4px 0px 0px 4px;
-      }
-    }
-  }
-  &.falseValidate {
-    label {
-      input {
-        &::after {
-          border: 2px solid #cb3d40;
-        }
-      }
-    }
-    .buttonFile {
-      border-color: #cb3d40;
-      border-width: 2px;
-    }
-  }
 }
 
 .buttonFile {
-  padding: 14px;
+  padding: 14px 14px 14px 16px;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.87);
   border-radius: 4px 0px 0px 4px;
-  transform: border-width 0.2s ease-in-out;
+
+  // background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  &.falseValidate {
+    border-color: var(--error);
+    border-width: 2px;
+  }
 }
 
 .fileText {
-  display: block;
   height: 100%;
   width: 100%;
-  border: 1px solid #d0cfcf;
+  border: 1px solid var(--radio-border);
   border-left: none;
   border-radius: 0 4px 4px 0;
-  padding: 14px;
-  color: #7e7e7e;
+  padding: 14px 16px;
+  color: var(--label);
+  display: flex;
+  align-items: center;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &.falseValidate {
+    border: 2px solid var(--error);
+
+    border-left: none;
+    padding-left: 15px;
+  }
+}
+
+.imageLabel {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.imageInput {
+  width: 20%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+
+  &::after {
+    content: "";
+    border: 1px solid var(--black);
+    border-radius: 4px 0px 0px 4px;
+  }
 }
