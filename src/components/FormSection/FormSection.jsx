@@ -18,7 +18,13 @@ import { postUser } from "src/redux/users/usersOperations";
 import InputField from "./InputField/InputField";
 import RadioField from "./RadioField/RadioField";
 import ImageField from "./ImageField/ImageField";
-import { selectIsSent } from "../../redux/users/usersSelectors";
+import {
+  selectIsPosting,
+  selectIsSent,
+} from "../../redux/users/usersSelectors";
+import Loader from "../Loader/Loader";
+import toast from "react-hot-toast";
+import { setPage } from "../../redux/users/usersSlice";
 import { getUsers } from "../../redux/users/usersOperations";
 
 const FormSection = () => {
@@ -26,12 +32,15 @@ const FormSection = () => {
 
   const isSent = useSelector(selectIsSent);
 
+  const isPosting = useSelector(selectIsPosting);
+
   useEffect(() => {
     dispatch(getPositions());
   }, [dispatch]);
 
   useEffect(() => {
     if (isSent) {
+      dispatch(setPage(1));
       dispatch(getUsers(1));
     }
   }, [dispatch, isSent]);
@@ -42,9 +51,16 @@ const FormSection = () => {
     formData.append("name", values.name);
     formData.append("position_id", values.position);
     formData.append("phone", values.phone);
-    formData.append("email", values.email);
+    formData.append("email", values.email.toLowerCase());
     formData.append("photo", values.photo);
-    dispatch(postUser(formData));
+
+    dispatch(postUser(formData)).then((data) => {
+      if (data.payload.status === 409) {
+        toast.error(data.payload.data.message);
+      } else {
+        toast.success(data.payload.message);
+      }
+    });
   };
 
   const initialValues = {
@@ -110,7 +126,11 @@ const FormSection = () => {
                   setFieldValue={setFieldValue}
                   values={values}
                 />
-                <Button text="Submit" type="submit" isValid={isValid} />
+                {isPosting ? (
+                  <Loader />
+                ) : (
+                  <Button text="Submit" type="submit" isValid={isValid} />
+                )}
               </Form>
             )}
           </Formik>

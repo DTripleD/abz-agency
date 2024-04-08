@@ -9,23 +9,19 @@ const initialState = {
   isLoading: true,
   token: "",
   isSent: false,
-};
-
-const handlePending = (state) => {
-  state.isLoading = true;
-  state.error = "";
-};
-
-const handleRejected = (state, action) => {
-  state.error = action.payload;
+  isPosting: false,
 };
 
 export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setPage: (state) => {
-      state.page += 1;
+    setPage: (state, { payload }) => {
+      if (payload === 1) {
+        state.page = 1;
+      } else {
+        state.page += 1;
+      }
     },
   },
   extraReducers: (builder) =>
@@ -33,8 +29,14 @@ export const usersSlice = createSlice({
       .addCase(getToken.fulfilled, (state, { payload }) => {
         state.token = payload.token;
       })
+      .addCase(getUsers.pending, (state) => {
+        state.isLoading = true;
+
+        state.error = "";
+      })
       .addCase(getUsers.fulfilled, (state, { payload }) => {
         state.total_pages = payload.total_pages;
+        state.isLoading = false;
 
         if (state.page === 1) {
           state.users = payload.users;
@@ -43,14 +45,20 @@ export const usersSlice = createSlice({
         }
         state.isLoading = false;
       })
+      .addCase(getUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(postUser.pending, (state) => {
+        state.isPosting = true;
+      })
       .addCase(postUser.fulfilled, (state) => {
+        state.isPosting = false;
         state.isSent = true;
       })
-      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
-      .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        handleRejected
-      ),
+      .addCase(postUser.rejected, (state) => {
+        state.isPosting = false;
+      }),
 });
 
 export const { setPage } = usersSlice.actions;

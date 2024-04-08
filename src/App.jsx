@@ -8,6 +8,8 @@ import FormSection from "components/FormSection/FormSection";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getToken } from "./redux/users/usersOperations";
+import { Toaster } from "react-hot-toast";
+import { toastOptions } from "./helpers/toastOptions";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ function App() {
         <UsersSection />
         <FormSection />
       </main>
+      <Toaster toastOptions={toastOptions} />
     </div>
   );
 }

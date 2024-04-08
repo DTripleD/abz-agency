@@ -1,4 +1,4 @@
-// @import "src/index.scss";
+@import "src/index.scss";
 
 .inputBlock {
   position: relative;
@@ -21,7 +21,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--label);
-  padding: 5px;
+
   transition: 0.2s ease-in;
   pointer-events: none;
 
@@ -50,6 +50,8 @@
     top: 0;
     transform: translateY(-50%) translateX(-10px);
     background-color: var(--background);
+
+    padding: 5px;
 
     font-size: 12px;
     line-height: 14px;

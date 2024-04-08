@@ -13,6 +13,8 @@ import {
 } from "src/redux/users/usersSelectors";
 import { getUsers } from "src/redux/users/usersOperations";
 import { setPage } from "src/redux/users/usersSlice";
+import Loader from "../Loader/Loader";
+import { selectIsLoading } from "../../redux/users/usersSelectors";
 
 const UsersSection = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ const UsersSection = () => {
   const users = useSelector(selectUsers);
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getUsers(page));
@@ -35,13 +38,22 @@ const UsersSection = () => {
         <h2 className={css.title} id="users">
           Working with GET request
         </h2>
+
         <ul className={css.usersList}>
           {users.map((user) => (
             <UserItem user={user} key={user.id} />
           ))}
         </ul>
-        {page < totalPages && (
-          <Button text="Show more" isLarge={true} handleFunction={onLoadMore} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          page < totalPages && (
+            <Button
+              text="Show more"
+              isLarge={true}
+              handleFunction={onLoadMore}
+            />
+          )
         )}
       </div>
     </section>

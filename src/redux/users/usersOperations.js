@@ -39,7 +39,7 @@ export const postUser = createAsyncThunk(
     try {
       const { data } = await instance.post("/users", formData, config);
 
-      return { data, formData };
+      return data;
     } catch (error) {
       return rejectWithValue(error.response);
     }

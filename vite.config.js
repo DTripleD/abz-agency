@@ -10,4 +10,5 @@ export default defineConfig({
       components: "/src/components",
     },
   },
+  base: "/abz-agency/",
 });
