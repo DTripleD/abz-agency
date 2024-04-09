@@ -13,7 +13,7 @@ import {
 } from "src/redux/users/usersSelectors";
 import { getUsers } from "src/redux/users/usersOperations";
 import { setPage } from "src/redux/users/usersSlice";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import { selectIsLoading } from "../../redux/users/usersSelectors";
 
 const UsersSection = () => {

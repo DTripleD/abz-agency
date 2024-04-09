@@ -11,6 +11,7 @@ const ImageField = ({ errors, touched, setFieldValue, values }) => {
           type="file"
           name="photo"
           accept="image/jpeg"
+          arial-label="Photo picker"
           value=""
           className={css.imageInput}
           validate={validatePhoto}

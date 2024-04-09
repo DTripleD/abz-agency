@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 
 import css from "./UserItem.module.scss";
 
+import cover from "/images/photo-cover.webp";
+
 const UserItem = ({ user }) => {
   return (
     <li className={css.listItem}>
       <img
         src={
-          user.photo.endsWith("placeholder.png")
-            ? "../../../src/images/photo-cover.png"
-            : user.photo || "../../../src/images/photo-cover.png"
+          user.photo.endsWith("placeholder.png") ? cover : user.photo || cover
         }
         alt="User photo"
         className={css.userImage}

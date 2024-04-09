@@ -1,6 +1,6 @@
 import Button from "components/Button/Button";
 
-import icons from "src/images/icons.svg";
+import icons from "/images/icons.svg";
 
 import css from "./FormSection.module.scss";
 import { Form, Formik } from "formik";
@@ -15,17 +15,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPositions } from "src/redux/positions/positionsOperations";
 import { postUser } from "src/redux/users/usersOperations";
 
-import InputField from "./InputField/InputField";
-import RadioField from "./RadioField/RadioField";
-import ImageField from "./ImageField/ImageField";
-import {
-  selectIsPosting,
-  selectIsSent,
-} from "../../redux/users/usersSelectors";
-import Loader from "../Loader/Loader";
+import InputField from "components/InputField/InputField";
+import RadioField from "components/RadioField/RadioField";
+import ImageField from "components/ImageField/ImageField";
+import { selectIsPosting, selectIsSent } from "src/redux/users/usersSelectors";
+
+import Loader from "components/Loader/Loader";
 import toast from "react-hot-toast";
-import { setPage } from "../../redux/users/usersSlice";
-import { getUsers } from "../../redux/users/usersOperations";
+import { setPage } from "src/redux/users/usersSlice";
+import { getUsers } from "src/redux/users/usersOperations";
 
 const FormSection = () => {
   const dispatch = useDispatch();
@@ -67,7 +65,7 @@ const FormSection = () => {
     name: "",
     email: "",
     phone: "",
-    position: "",
+    position: 1,
     photo: "",
   };
 

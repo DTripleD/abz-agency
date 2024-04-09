@@ -10,6 +10,7 @@ const InputField = ({ errors, touched, validate, label, name, type }) => {
       <Field
         type={type}
         name={name}
+        aria-label={`${name} field`}
         className={`${css.inputField} ${
           errors[name] && touched[name] ? css.falseValidate : ``
         }`}

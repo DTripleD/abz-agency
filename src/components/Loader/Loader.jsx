@@ -1,6 +1,6 @@
 import css from "./Loader.module.scss";
 
-import icons from "src/images/icons.svg";
+import icons from "/images/icons.svg";
 
 const Loader = () => {
   return (

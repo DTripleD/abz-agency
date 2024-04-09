@@ -2,14 +2,15 @@ import "./App.scss";
 
 import Header from "components/Header/Header";
 
-import HeroSection from "components/HeroSection/HeroSection";
-import UsersSection from "components/UsersSection/UsersSection";
-import FormSection from "components/FormSection/FormSection";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getToken } from "./redux/users/usersOperations";
 import { Toaster } from "react-hot-toast";
 import { toastOptions } from "./helpers/toastOptions";
+
+import HeroSection from "src/modules/HeroSection/HeroSection";
+import UsersSection from "src/modules/UserSection/UsersSection";
+import FormSection from "src/modules/FormSection/FormSection";
 
 function App() {
   const dispatch = useDispatch();

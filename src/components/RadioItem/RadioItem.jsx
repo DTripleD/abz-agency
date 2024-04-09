@@ -9,6 +9,7 @@ const RadioItem = ({ position, position_id, setFieldValue, validate }) => {
       <Field
         type="radio"
         name="position"
+        arial-label={`${position} option`}
         id={position_id}
         className={css.radioInput}
         value={position_id}

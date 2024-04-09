@@ -2,6 +2,9 @@
 
 .header {
   background-color: var(--white);
+
+  position: sticky;
+  top: 0;
 }
 
 .headerContainer {
@@ -10,6 +13,8 @@
   align-items: center;
   padding-top: 13px;
   padding-bottom: 13px;
+
+  width: 100%;
 }
 
 .buttonsList {
@@ -20,4 +25,5 @@
 .logo {
   width: 104px;
   height: 26px;
+  cursor: pointer;
 }

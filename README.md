@@ -1,7 +1,7 @@
 <h1 align="center">Test Assignment for abz agency</h1>
 <h2 align="center">
 
-<img src="src/images/banner.jpg">
+<!-- <img src="src/images/banner.jpg"> -->
 
 ## Results
 

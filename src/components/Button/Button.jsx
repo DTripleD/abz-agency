@@ -11,6 +11,7 @@ const Button = ({
   return (
     <button
       type={type}
+      aria-label={`${text} button`}
       disabled={!isValid}
       onClick={handleFunction}
       className={`${css.button} ${isLarge ? css.large : ""}`}
