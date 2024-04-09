@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-
-import css from "./RadioField.module.scss";
-import { validatePosition } from "src/validation/validation";
-
 import { useSelector } from "react-redux";
 
+import css from "./RadioField.module.scss";
 import RadioItem from "components/RadioItem/RadioItem";
+
+import { validatePosition } from "src/validation/validation";
+
 import { selectPositions } from "src/redux/positions/positionsSelectors";
 
 const RadioField = ({ setFieldValue }) => {

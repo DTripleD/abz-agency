@@ -1,35 +1,32 @@
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+
+import css from "./FormSection.module.scss";
+import Loader from "components/Loader/Loader";
 import Button from "components/Button/Button";
+import InputField from "components/InputField/InputField";
+import RadioField from "components/RadioField/RadioField";
+import ImageField from "components/ImageField/ImageField";
 
 import icons from "/images/icons.svg";
 
-import css from "./FormSection.module.scss";
-import { Form, Formik } from "formik";
 import {
   validateEmail,
   validateName,
   validatePhone,
 } from "src/validation/validation";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPositions } from "src/redux/positions/positionsOperations";
-import { postUser } from "src/redux/users/usersOperations";
-
-import InputField from "components/InputField/InputField";
-import RadioField from "components/RadioField/RadioField";
-import ImageField from "components/ImageField/ImageField";
-import { selectIsPosting, selectIsSent } from "src/redux/users/usersSelectors";
-
-import Loader from "components/Loader/Loader";
-import toast from "react-hot-toast";
 import { setPage } from "src/redux/users/usersSlice";
-import { getUsers } from "src/redux/users/usersOperations";
+import { postUser, getUsers } from "src/redux/users/usersOperations";
+import { getPositions } from "src/redux/positions/positionsOperations";
+import { selectIsPosting, selectIsSent } from "src/redux/users/usersSelectors";
 
 const FormSection = () => {
   const dispatch = useDispatch();
 
   const isSent = useSelector(selectIsSent);
-
   const isPosting = useSelector(selectIsPosting);
 
   useEffect(() => {

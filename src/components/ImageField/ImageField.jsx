@@ -1,7 +1,9 @@
-import { ErrorMessage, Field } from "formik";
-import css from "./ImageField.module.scss";
-import { validatePhoto } from "src/validation/validation";
 import PropTypes from "prop-types";
+import { ErrorMessage, Field } from "formik";
+
+import css from "./ImageField.module.scss";
+
+import { validatePhoto } from "src/validation/validation";
 
 const ImageField = ({ errors, touched, setFieldValue, values }) => {
   return (

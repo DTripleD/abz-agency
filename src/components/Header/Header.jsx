@@ -1,6 +1,5 @@
-import Button from "components/Button/Button";
-
 import css from "./Header.module.scss";
+import Button from "components/Button/Button";
 
 import icons from "/images/icons.svg";
 import { scrollIntoView } from "src/helpers/scrollIntoView";

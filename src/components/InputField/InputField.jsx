@@ -1,8 +1,7 @@
+import PropTypes from "prop-types";
 import { ErrorMessage, Field } from "formik";
 
 import css from "./InputField.module.scss";
-
-import PropTypes from "prop-types";
 
 const InputField = ({ errors, touched, validate, label, name, type }) => {
   return (

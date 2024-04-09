@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import css from "./UsersSection.module.scss";
-
 import Button from "components/Button/Button";
+import Loader from "src/components/Loader/Loader";
 import UserItem from "components/UserItem/UserItem";
 
 import {
@@ -11,10 +11,9 @@ import {
   selectUsers,
   selectTotalPages,
 } from "src/redux/users/usersSelectors";
-import { getUsers } from "src/redux/users/usersOperations";
 import { setPage } from "src/redux/users/usersSlice";
-import Loader from "../../components/Loader/Loader";
-import { selectIsLoading } from "../../redux/users/usersSelectors";
+import { getUsers } from "src/redux/users/usersOperations";
+import { selectIsLoading } from "src/redux/users/usersSelectors";
 
 const UsersSection = () => {
   const dispatch = useDispatch();
@@ -33,11 +32,9 @@ const UsersSection = () => {
   };
 
   return (
-    <section className={`${css.section} ${css.userSection}`}>
+    <section className={`${css.section} ${css.userSection}`} id="users">
       <div className={`${css.container} ${css.secondaryContainer}`}>
-        <h2 className={css.title} id="users">
-          Working with GET request
-        </h2>
+        <h2 className={css.title}>Working with GET request</h2>
 
         <ul className={css.usersList}>
           {users.map((user) => (

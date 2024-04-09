@@ -1,6 +1,6 @@
+import css from "./HeroSection.module.scss";
 import Button from "components/Button/Button";
 
-import css from "./HeroSection.module.scss";
 import { scrollIntoView } from "src/helpers/scrollIntoView";
 
 const HeroSection = () => {
